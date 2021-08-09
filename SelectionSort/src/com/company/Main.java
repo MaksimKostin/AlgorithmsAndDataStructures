@@ -25,7 +25,7 @@ public class Main {
     private static int min(int[] arr, int start){
         int minIndex = start;
         int minValue = arr[start];
-        for (int i = start; i < arr.length; i++) {
+        for (int i = start + 1; i < arr.length; i++) {
             if(arr[i] < minValue){
                 minIndex = i;
                 minValue = arr[i];
