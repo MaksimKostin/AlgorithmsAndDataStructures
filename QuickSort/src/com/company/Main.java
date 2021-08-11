@@ -29,7 +29,7 @@ public class Main {
             while(arr[rightIndex] > pivot){
                 rightIndex--;
             }
-            if(leftIndex <= rightIndex){ // предотвращение swap для отсортированных пар
+            if(leftIndex <= rightIndex){ // предотвращение зацикливания если эл-ты отсортированы в массиве или подмассиве
                 swap(arr, leftIndex, rightIndex);
                 leftIndex++;
                 rightIndex--;
