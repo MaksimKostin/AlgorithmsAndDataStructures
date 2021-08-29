@@ -37,6 +37,7 @@ public class Main {
 
         System.out.println("Сумма дерева: " + sumRecursive(root));
         System.out.println("Сумма дерева: " + sumDeep(root));
+        System.out.println("Сумма дерева: " + sumWide(root));
     }
 
     public static int sumRecursive(Tree root){
@@ -65,6 +66,26 @@ public class Main {
 
             if(node.left != null)
                 stack.push(node.left);
+        }
+
+        return total;
+    }
+
+    public static int sumWide(Tree root){
+        SimpleQueue<Tree> queue = new SimpleQueue<>();
+        queue.add(root);
+
+        int total = 0;
+
+        while (!queue.isEmpty()){
+            Tree node = queue.remove();
+            total += node.value;
+
+            if(node.left != null)
+                queue.add(node.left);
+
+            if(node.right != null)
+                queue.add(node.right);
         }
 
         return total;
