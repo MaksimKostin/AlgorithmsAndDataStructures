@@ -15,15 +15,6 @@ class Tree{
         this.value = value;
     }
 
-    public int sum(){
-        int total = value;
-        if(left != null)
-            total += left.sum();
-        if(right != null)
-            total += right.sum();
-
-        return total;
-    }
 }
 
 public class Main {
@@ -44,6 +35,38 @@ public class Main {
                                         new Tree(38),
                                         new Tree(52))));
 
-        System.out.println("Сумма дерева: " + root.sum());
+        System.out.println("Сумма дерева: " + sumRecursive(root));
+        System.out.println("Сумма дерева: " + sumDeep(root));
+    }
+
+    public static int sumRecursive(Tree root){
+        int total = root.value;
+
+        if(root.left != null)
+            total += sumRecursive(root.left);
+        if(root.right != null)
+            total += sumRecursive(root.right);
+
+        return total;
+    }
+
+    public static int sumDeep(Tree root){
+        SimpleStack<Tree> stack = new SimpleStack<>();
+        stack.push(root);
+
+        int total = 0;
+
+        while (!stack.isEmpty()){
+            Tree node = stack.pop();
+            total += node.value;
+
+            if(node.right != null)
+                stack.push(node.right);
+
+            if(node.left != null)
+                stack.push(node.left);
+        }
+
+        return total;
     }
 }
